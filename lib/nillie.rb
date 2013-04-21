@@ -15,7 +15,6 @@ class Nillie
       raise e
     end
   end
-  include MethodMissing
 
   attr_reader :sent_method, :returned_by, :type_error
   def type_error? ; @type_error ; end
@@ -67,10 +66,5 @@ end
 
 # TODO: Really useful?
 module Kernel # reopen
-  def method_missing sent_method, *args # override
-    # TODO: better error message by tracing the stack.
-    e = NoMethodError.new "Undefined method `#{sent_method}' for #{self}:#{self.class}!"
-    e.sent_method = sent_method
-    raise e
-  end
+  include Nillie::MethodMissing
 end
