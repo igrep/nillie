@@ -33,7 +33,7 @@ describe Nillie do
             some_object.some_method_which_can_return_nil.some_chained_method
           end
         end
-        it { should be_instance_of NilError::InvalidType }
+        it { should be_instance_of Nillie::InvalidType }
         its( :sent_method ){ should be :some_chained_method }
         it { should_not be_type_error }
       end
