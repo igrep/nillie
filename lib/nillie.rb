@@ -69,8 +69,7 @@ end
 module Kernel # reopen
   def method_missing sent_method, *args # override
     # TODO: better error message by tracing the stack.
-    # TODO: correct the preposition before `self'. on? to?
-    e = NoMethodError.new "Undefined method `#{sent_method}' called on #{self.inspect}!"
+    e = NoMethodError.new "Undefined method `#{sent_method}' for #{self}:#{self.class}!"
     e.sent_method = sent_method
     raise e
   end
