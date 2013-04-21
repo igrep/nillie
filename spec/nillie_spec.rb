@@ -39,14 +39,13 @@ describe Nillie do
       end
 
       context 'when nil is given as an invalid argument of some method' do
-        pending
-        let( :some_object ){ double( 'some_object', some_method_which_can_return_nil: nil ) }
+        let( :some_array ){ [1] }
         subject do
           Nillie.catches do
-            some_object.some_method_which_can_return_nil.some_chained_method
+            some_array[nil]
           end
         end
-        it { should be_instance_of NilError::InvalidType }
+        it { should be_instance_of Nillie::InvalidType }
         its( :sent_method ){ should be_nil }
         it { should be_type_error }
       end
