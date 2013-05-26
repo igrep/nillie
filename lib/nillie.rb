@@ -56,7 +56,11 @@ class Nillie
 end
 
 class NilError < NoMethodError
-  class NoMethod < NilError ; end
+  class NoMethod < NilError
+    def is_a? klass
+      klass == ::NoMethodError || super
+    end
+  end
   class Returned < NilError ; end
 end
 
