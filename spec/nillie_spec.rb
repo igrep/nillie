@@ -52,3 +52,24 @@ describe Nillie do
     end
   end
 end
+
+describe NilError::NoMethod do
+  it 'is rescued as NilError' do
+    expect do
+      begin
+        raise described_class
+      rescue NilError
+        # just rescue. do nothing.
+      end
+    end.not_to raise_error Exception
+  end
+  it 'is rescued as NoMethodError' do
+    expect do
+      begin
+        raise described_class
+      rescue NoMethodError
+        # just rescue. do nothing.
+      end
+    end.not_to raise_error Exception
+  end
+end
